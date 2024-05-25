@@ -1,4 +1,4 @@
-# 🛡️ Cybersecurity Writeups Collection
+# **🛡️ Cybersecurity Writeups Collection**
 
 Welcome to my repository! This is a curated collection of all the Capture The Flag (CTF) challenges, labs, and penetration testing write-ups I have completed. It serves as a testament to my journey and experiences in the field of cybersecurity. Dive in to explore the detailed breakdowns, methodologies, and solutions that reflect my hands-on expertise.
 
