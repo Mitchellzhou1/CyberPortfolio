@@ -2,6 +2,7 @@
 
 Welcome to my repository! This is a curated collection of all the Capture The Flag (CTF) challenges, labs, and penetration testing write-ups I have completed. It serves as a testament to my journey and experiences in the field of cybersecurity. Dive in to explore the detailed breakdowns, methodologies, and solutions that reflect my hands-on expertise.
 
+<br>&#8203;
 ## Table of Contents
 
 - [CTF Writeups](#ctf-writeups)
@@ -10,9 +11,7 @@ Welcome to my repository! This is a curated collection of all the Capture The Fl
 - [Tools and Techniques](#tools-and-techniques)
 - [Contact](#contact)
 
-
-
-
+<br>&#8203;
 ## CTF Writeups
 
 <img src="https://osiris.cyber.nyu.edu/logo.png" alt="NYU Cybersecurity Logo" width="250" height="250" align="right">
@@ -35,6 +34,7 @@ Unfortunately, I can't share write-ups for all the awesome CTFs I've tackled bec
 - [TryHackMe](writeups/TryHackMe)
 - [CTFtime](writeups/CTFtime)
 
+<br>&#8203;
 ## Labs
 
 Hands-on labs are essential for understanding real-world scenarios. This section contains write-ups from various lab exercises I have completed:
@@ -43,12 +43,14 @@ Hands-on labs are essential for understanding real-world scenarios. This section
 - [WebGoat](labs/WebGoat)
 - [VulnHub](labs/VulnHub)
 
+<br>&#8203;
 ## Penetration Testing Writeups
 
 As an aspiring penetration tester, I have undertaken several penetration testing courses and included some of my work below. 
 
 - [NYU Pentesting Report](Pentesting%20Reports/NBN%20Pentesting%20Report.pdf)
 
+<br>&#8203;
 ## Tools and Techniques
 
 Throughout my cybersecurity journey, I've used various tools and techniques. Here are some of the key ones that I frequently employ:
@@ -63,9 +65,9 @@ Throughout my cybersecurity journey, I've used various tools and techniques. Her
 
 If you have any questions, suggestions, or just want to connect, feel free to reach out:
 
-- **Email**: [your-email@example.com](mailto:your-email@example.com)
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/yourprofile)
-- **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
+- **Email**: [mitchelz@andrew.cmu.edu](mailto:mitchelz@andrew.cmu.edu)
+- **LinkedIn**: [Mitchell Zhou](https://www.linkedin.com/in/mitchell-zhou)
+- **GitHub**: [@Mitchellzhou1](https://github.com/Mitchellzhou1)
 
 Feel free to explore the repository and learn from my experiences. Happy hacking! 🚀
 
