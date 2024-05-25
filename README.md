@@ -22,7 +22,7 @@ CTF (Capture The Flag) competitions provide a fun and challenging platform to ho
 Currently, I am pursuing a master's degree at Carnegie Mellon University and am a proud member of the Plaid Parliament of Pwning (PPP), **The Top Hacking Team in the Nation!**
 
 Below you can find some of the challenges that I have done (I'm a web-challs guy 🤭).
-<br>&#8203;<br>&#8203;<br>&#8203;
+<br>&#8203;
 
 Unfortunately, I can't share write-ups for all the awesome CTFs I've tackled because of a **no-sharing policy**. Here are some I can share:
 - [Hack The Box](writeups/HackTheBox)
