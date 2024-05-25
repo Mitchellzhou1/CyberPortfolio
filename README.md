@@ -32,7 +32,7 @@ Hands-on labs are essential for understanding real-world scenarios. This section
 
 As an aspiring penetration tester, I have undertaken several penetration testing courses and included some of my work below. 
 
-- [NYU Pentesting](Pentesting Reports/FINAL_REPORT.docx)
+- [NYU Pentesting Report](Pentesting%20Reports/FINAL_REPORT.docx)
 
 ## Tools and Techniques
 
