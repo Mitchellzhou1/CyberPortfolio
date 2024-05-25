@@ -15,13 +15,22 @@ Welcome to my repository! This is a curated collection of all the Capture The Fl
 
 ## CTF Writeups
 
-CTF (Capture The Flag) competitions provide a fun and challenging platform to hone hacking skills. My journey into CTFs began during my sophomore year at NYU, where I not only participated in numerous competitions but also contributed by creating CTF challenges for NYU CSAW (you can find them on my GitHub). ![NYU Cybersecurity Logo](https://osiris.cyber.nyu.edu/logo.png)
-Currently, I am pursuing a master's degree at Carnegie Mellon University and am a proud member of the Plaid Parliament of Pwning (PPP), the top hacking team in the nation!
-![NYU Cybersecurity Logo](https://osiris.cyber.nyu.edu/logo.png)
+<img src="https://osiris.cyber.nyu.edu/logo.png" alt="NYU Cybersecurity Logo" width="250" height="250" align="right">
+CTF (Capture The Flag) competitions provide a fun and challenging platform to hone hacking skills. The challenges in CTFs typically cover various areas of cybersecurity, such as cryptography, reverse engineering, web security, binary exploitation, forensics, and more. Participants often compete individually or in teams to solve these challenges and capture "flags" that represent completing each challenge.My journey into CTFs began during my sophomore year at NYU, where I not only participated in numerous competitions but also contributed by creating CTF challenges for NYU CSAW 
+(you can find them on my GitHub).
+
+<br>&#8203;
+
+
+<img src="https://pwning.net/images/new_logo.png" alt="NYU Cybersecurity Logo" width="100" height="120" align="left" hspace="40">
+
+Currently, I am pursuing a master's degree at Carnegie Mellon University and am a proud member of the Plaid Parliament of Pwning (PPP), **The Top Hacking Team in the Nation!**
 
 
 Below you can find some of the challenges that I have done (I'm mostly a web challs guy 🤭).
+<br>&#8203;<br>&#8203;<br>&#8203;
 
+Unfortunately, I can't share write-ups for all the awesome CTFs I've tackled because of a **no-sharing policy**. Here are some I can share:
 - [Hack The Box](writeups/HackTheBox)
 - [TryHackMe](writeups/TryHackMe)
 - [CTFtime](writeups/CTFtime)
