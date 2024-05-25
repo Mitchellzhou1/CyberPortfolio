@@ -11,14 +11,11 @@ Welcome to my repository! This is a curated collection of all the Capture The Fl
 - [Tools and Techniques](#tools-and-techniques)
 - [Contact](#contact)
 
-<br>&#8203;
 ## CTF Writeups
 
 <img src="https://osiris.cyber.nyu.edu/logo.png" alt="NYU Cybersecurity Logo" width="250" height="250" align="right">
 CTF (Capture The Flag) competitions provide a fun and challenging platform to hone hacking skills. The challenges in CTFs typically cover various areas of cybersecurity, such as cryptography, reverse engineering, web security, binary exploitation, forensics, and more. Participants often compete individually or in teams to solve these challenges and capture "flags" that represent completing each challenge.My journey into CTFs began during my sophomore year at NYU, where I not only participated in numerous competitions but also contributed by creating CTF challenges for NYU CSAW 
 (you can find them on my GitHub).
-
-<br>&#8203;
 
 
 <img src="https://pwning.net/images/new_logo.png" alt="NYU Cybersecurity Logo" width="100" height="120" align="left" hspace="40">
@@ -34,7 +31,6 @@ Unfortunately, I can't share write-ups for all the awesome CTFs I've tackled bec
 - [TryHackMe](writeups/TryHackMe)
 - [CTFtime](writeups/CTFtime)
 
-<br>&#8203;
 ## Labs
 
 Hands-on labs are essential for understanding real-world scenarios. This section contains write-ups from various lab exercises I have completed:
@@ -43,14 +39,15 @@ Hands-on labs are essential for understanding real-world scenarios. This section
 - [WebGoat](labs/WebGoat)
 - [VulnHub](labs/VulnHub)
 
-<br>&#8203;
+
 ## Penetration Testing Writeups
 
 As an aspiring penetration tester, I have undertaken several penetration testing courses and included some of my work below. 
 
 - [NYU Pentesting Report](Pentesting%20Reports/NBN%20Pentesting%20Report.pdf)
 
-<br>&#8203;
+
+
 ## Tools and Techniques
 
 Throughout my cybersecurity journey, I've used various tools and techniques. Here are some of the key ones that I frequently employ:
