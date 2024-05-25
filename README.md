@@ -13,6 +13,7 @@ Welcome to my repository! This is a curated collection of all the Capture The Fl
 ## CTF Writeups
 
 CTF (Capture The Flag) competitions provide a fun and challenging platform to hone hacking skills. My journey into CTFs began during my sophomore year at NYU, where I not only participated in numerous competitions but also contributed by creating CTF challenges for NYU CSAW (you can find them on my GitHub). Currently, I am pursuing a master's degree at Carnegie Mellon University and am a proud member of the Plaid Parliament of Pwning (PPP), the top hacking team in the nation!
+
 Below you can find some of the challenges that I have done (I'm mostly a web challs guy 🤭).
 
 - [Hack The Box](writeups/HackTheBox)
