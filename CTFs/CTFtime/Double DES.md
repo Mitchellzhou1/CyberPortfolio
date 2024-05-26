@@ -27,7 +27,7 @@ So upon examining the code, I found the following:
 
  
 2) They reuse the same keys for encrypting the user’s text!!! Because DES is a symmetric encryption, I just need to figure out the keys and use them to decode the flag!
-![Screenshot from 2024-05-26 19-20-17](https://github.com/Mitchellzhou1/CyberPortfolio/assets/95938232/9c7b1b03-60e6-4705-9a2d-d509ddc4d620)!
+![Screenshot from 2024-05-26 19-20-17](https://github.com/Mitchellzhou1/CyberPortfolio/assets/95938232/9c7b1b03-60e6-4705-9a2d-d509ddc4d620)
 
 I did some research into vulnerabilities of Double DES and found an attack called Meet-in-the-Middle attack. The idea of this attack is that I first brute force all keys in the keyspace and just those keys to encrypt the plain text -> let's call this E1. Then I take the second key and use it to decrypt the ciphertext -> let's call the result of this decryption E2. If I find a match where E1 == E2, then I know that I have found the two pairs of keys used to encrypt the flag!!! The attack depends on being able to control the initial plaintext and knowing what the ciphertext at the end of the double encryption will be.
 
@@ -43,7 +43,7 @@ In this challenge, I exposed the fact that they allowed me to encrypt my own mes
 
 
 
-### So here is what I know:
+### What I know:
 
 1) Ciphertext Flag: 3494708d8f9c6563da734dd7547424b044e767b2ed05ec07b63c8804166fa3b0fa8af43825da9529
 2) Custom plain text = 11111111
@@ -125,6 +125,7 @@ print("Flag is:")
 print(decode(FINAL_key1, FINAL_key2, ciphertext))
 ```
 The Results:
+
 ![Screenshot from 2024-05-26 19-23-47](https://github.com/Mitchellzhou1/CyberPortfolio/assets/95938232/c936d757-4acd-4637-bf08-bbfd7a42fe3b)
 
 
