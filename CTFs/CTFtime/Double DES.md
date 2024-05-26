@@ -2,25 +2,46 @@
 
 ### CTF Name: Double DES
 **CTF Weight:** 12o points
-**link: ** https://play.picoctf.org/practice/challenge/140?page=1&search=des
+
+**Link:** https://play.picoctf.org/practice/challenge/140?page=1&search=des
 
 Double DES (Data Encryption Standard) refers to using the DES algorithm twice consecutively with two different keys for encrypting data. The process involves encrypting the plaintext first with one DES key, and then encrypting the output again with a different DES key.
 
 As you can see from the picture below, this is a symmetric encryption algorithm. With key1 and key2, I will be able to decrypt the ciphertext.
 
 
+<img src="https://github.com/Mitchellzhou1/CyberPortfolio/assets/95938232/7e667b38-fad9-4b0c-aa0a-6c1f371c666a" style="width: 40vw;">
+
 
 ## My Challenge:
+
+
+![Screenshot from 2024-05-26 19-15-34](https://github.com/Mitchellzhou1/CyberPortfolio/assets/95938232/7ded6229-e685-4e1e-8ac5-5d4dc1df2c10)
 
 In this challenge, I am asked to netcat into their server and told to decode the Double DES Encrypted text. They provided the code that they used to encrypt the flag. One other attribute of the challenge that I was able to take advantage of was the fact that in the netcat connection, they let the user encrypt their own messages!
 
 So upon examining the code, I found the following:
 1) The key space is only 6 digits + 2 spaces for padding, so total is 8. So realistically I just need to brute force 10^6 digits which is reasonable.
+
+![Screenshot from 2024-05-26 19-18-34](https://github.com/Mitchellzhou1/CyberPortfolio/assets/95938232/977fc22a-5b31-45ef-8c9d-3c79ee5e694b)
+
+ 
 2) They reuse the same keys for encrypting the user’s text!!! Because DES is a symmetric encryption, I just need to figure out the keys and use them to decode the flag!
+![Screenshot from 2024-05-26 19-20-17](https://github.com/Mitchellzhou1/CyberPortfolio/assets/95938232/9c7b1b03-60e6-4705-9a2d-d509ddc4d620)!
 
 I did some research into vulnerabilities of Double DES and found an attack called Meet-in-the-Middle attack. The idea of this attack is that I first brute force all keys in the keyspace and just those keys to encrypt the plain text -> let's call this E1. Then I take the second key and use it to decrypt the ciphertext -> let's call the result of this decryption E2. If I find a match where E1 == E2, then I know that I have found the two pairs of keys used to encrypt the flag!!! The attack depends on being able to control the initial plaintext and knowing what the ciphertext at the end of the double encryption will be.
 
+
+![Screenshot from 2024-05-26 19-20-27](https://github.com/Mitchellzhou1/CyberPortfolio/assets/95938232/6f59b158-af9f-4b7f-a8df-5c61d856b8ee)
+
+   
+
 In this challenge, I exposed the fact that they allowed me to encrypt my own messages and see the ciphertext at the end. Sooo, this is what I did:
+
+![Screenshot from 2024-05-26 19-20-39](https://github.com/Mitchellzhou1/CyberPortfolio/assets/95938232/a16d95e0-493d-4c7a-850d-995b70cbef0d)
+
+
+
 
 ### So here is what I know:
 
@@ -33,6 +54,9 @@ In this challenge, I exposed the fact that they allowed me to encrypt my own mes
 1) Key 1: will figure this out with brute force
 2) Key 2: will figure this out with brute force
 3) Plain text: will figure out by decoding the Ciphertext Flag with the two keys!!!
+
+
+
 
 ### Script:
 
@@ -99,3 +123,9 @@ print("Key 2 =", FINAL_key2)
 
 print("Flag is:")
 print(decode(FINAL_key1, FINAL_key2, ciphertext))
+```
+The Results:
+![Screenshot from 2024-05-26 19-23-47](https://github.com/Mitchellzhou1/CyberPortfolio/assets/95938232/c936d757-4acd-4637-bf08-bbfd7a42fe3b)
+
+
+‭So the final flag is:‬‭ e21cf83f64e53a743e685e55852feaf2‬ 😎
