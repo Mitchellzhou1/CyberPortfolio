@@ -12,7 +12,7 @@ Welcome to my repository! This is a curated collection of all the Capture The Fl
 
 ## CTF Writeups
 
-<img src="https://osiris.cyber.nyu.edu/logo.png" alt="NYU Cybersecurity Logo" width="250" height="250" align="right">
+<img src="https://osiris.cyber.nyu.edu/logo.png" alt="NYU Cybersecurity Logo" width="300" height="250" align="right">
 CTF (Capture The Flag) competitions provide a fun and challenging platform to hone hacking skills. The challenges in CTFs typically cover various areas of cybersecurity, such as cryptography, reverse engineering, web security, binary exploitation, forensics, and more. Participants often compete individually or in teams to solve these challenges and capture "flags" that represent completing each challenge.My journey into CTFs began during my sophomore year at NYU, where I not only participated in numerous competitions but also contributed by creating CTF challenges for NYU CSAW 
 (you can find them on my GitHub).
 
@@ -24,7 +24,7 @@ Currently, I am pursuing a master's degree at Carnegie Mellon University and am 
 Below you can find some of the challenges that I have done (I'm a web-challs guy 🤭).
 <br>&#8203;
 
-Unfortunately, I can't share write-ups for all the awesome CTFs I've tackled because of a **no-sharing policy**. Here are some I can share:
+Unfortunately, I can't share write-ups for all the awesome CTFs I've tackled because of a **no-sharing policy**. But here are some I can share:
 - [Hack The Box](CTFs/HackTheBox)
 - [TryHackMe](CTFs/TryHackMe)
 - [CTFtime](CTFs/CTFtime)
