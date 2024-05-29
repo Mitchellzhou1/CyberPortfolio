@@ -33,9 +33,7 @@ Unfortunately, I can't share write-ups for all the awesome CTFs I've tackled bec
 
 Hands-on labs are essential for understanding real-world scenarios. This section contains write-ups from various lab exercises I have completed:
 
-- [OWASP Juice Shop](labs/OWASP_Juice_Shop)
-- [WebGoat](labs/WebGoat)
-- [VulnHub](labs/VulnHub)
+- [BurpSuite](labs/Burp)
 
 
 ## Penetration Testing Writeups
