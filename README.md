@@ -26,8 +26,7 @@ Below you can find some of the challenges that I have done (I'm a web-challs guy
 
 Unfortunately, I can't share write-ups for all the awesome CTFs I've tackled because of a **no-sharing policy**. But here are some I can share:
 - [CTFtime](CTFs/CTFtime)
-- [Hack The Box](CTFs/HackTheBox)
-- [TryHackMe](CTFs/TryHackMe)
+- [picoCTF](CTFs/picoCTF)
 
 ## Labs
 
