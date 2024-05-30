@@ -20,3 +20,29 @@ We can find the code behind this function in the file `rqe4VVml5W.js` under sour
 
 To be honest, the CTF name is a little... misleading. You just need to reverse the javascript, there is no assembly.
 Anyways, I was able to reverse the javascript:
+
+`
+const strings = [
+    "381193zsgNYQ",
+    "check_flag",
+    "result",
+    "length",
+    "48829pZIrMh",
+    "648920pjyJsd",
+    "copy_char",
+    "21760lQoqpJ",
+    "arrayBuffer",
+    "1zBwHgR",
+    "innerHTML",
+    "615706OhnLTV",
+    "Correct!",
+    "getElementById",
+    "./ZoRd23o0wd",
+    "charCodeAt",
+    "instance",
+    "93703gBAUAn",
+    "442816lLbold",
+    "instantiate",
+    "1ZFMVDM"
+];
+`
