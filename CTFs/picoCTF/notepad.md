@@ -60,6 +60,7 @@ I noticed that in the index.html, the `{% include "errors/" + error + ".html" ig
 
 Going back to app.py, I noticed that the name to be written to was using a function called url_fix from the werkzeug.urls library to create the file name. After looking at the source code for url_fix, I saw that it replaces `\` with `/`!!!
 This is huge! we can now get around the `/` character being blacklisted by using `\` 
+
 ![image](https://github.com/Mitchellzhou1/CyberPortfolio/assets/95938232/e2eedda6-2b4e-49b6-abb2-74974d45f238)
 
 
