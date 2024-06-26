@@ -39,7 +39,7 @@ Hands-on labs are essential for understanding real-world scenarios. This section
 
 As an aspiring penetration tester, I have undertaken several penetration testing courses and included some of my work below. 
 
-- [School Pentesting Report](Pentesting%20Reports/NBN%20Pentesting%20Report.pdf)
+- [NBN Pentesting Report](Pentesting%20Reports/NBN%20Pentesting%20Report.pdf)
 
 
 
