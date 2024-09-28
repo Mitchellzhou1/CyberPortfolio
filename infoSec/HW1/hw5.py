@@ -162,7 +162,6 @@ def re_encrypt_cookie():
     # original_plaintext = '7b22757365726e616d65223a20226775657374222c202265787069726573223a2022323030302d30312d3037222c202269735f61646d696e223a202266616c7365227d0d0d0d0d0d0d0d0d0d0d0d0d0d1f208cd5f5e3709987479a65ff3437e1'
     # intermediary_vals = '2f4a1c00451b1d410c0b0273761652437b80389c82ccf05a76fc22c6e01e03a47cb4b8342789513d865d250e573f663a68b9118f80277bdcc874ad58daddc86079a75988b323afcb9f14e962f7f4cf695e749c2d64e5ef78279337670223fc08'
     server_cookie = get_cookie() + '00' * 16
-
     original_cipher_blocks = get_blocks(server_cookie, 32)
     new_plaintext_blocks = get_blocks(new_plaintext, 32)
     new_intermediary = [''] * len(original_cipher_blocks)
