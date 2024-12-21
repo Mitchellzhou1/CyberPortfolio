@@ -3,6 +3,7 @@
 ### Challenge Name: TwoMillion
 **Difficulty:** Easy
 
+![image](https://github.com/user-attachments/assets/b56b182a-6a29-448d-adab-c9879eeffb2a)
 
 
 
