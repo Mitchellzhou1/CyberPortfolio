@@ -140,6 +140,8 @@ But this is not a root account unfortunately :(
 
 From looking at the OS, it is running `22.04.2 LTS (Jammy Jellyfish)`. I looked up Privilege Escalation scripts for this version and found `CVE-2023-0386`
 
+`https://securitylabs.datadoghq.com/articles/overlayfs-cve-2023-0386/`
+
 After Executing the exploit I was able to get Root and the flag was `25b40afff5c53db702668299add6f306`
 
 ![image](https://github.com/user-attachments/assets/23bc035c-4afd-4664-8b4e-0f3f56507399)
