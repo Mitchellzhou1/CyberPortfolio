@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Q1.1",
+  "version": "1.0",
+  "description": "Q1.1",
+  "permissions": [],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/spongebob.png",
+      "48": "icons/spongebob.png",
+      "128": "icons/spongebob.png"
+    }
+  }
+}
