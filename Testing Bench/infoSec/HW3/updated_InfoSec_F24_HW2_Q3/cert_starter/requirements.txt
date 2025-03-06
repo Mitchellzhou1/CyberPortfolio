@@ -1,0 +1,19 @@
+certifi==2020.6.20
+cryptography==41.0.0
+hkp4py==0.2.3.1
+pem==20.1.0
+pyOpenSSL==23.2.0
+urllib3==1.25.10
+
+22/tcp    open  ssh
+80/tcp    open  http
+111/tcp   open  rpcbind
+631/tcp   open  ipp
+904/tcp   open  unknown
+4330/tcp  open  dey-sapi
+5432/tcp  open  postgresql
+43451/tcp open  unknown
+44321/tcp open  pmcd
+44322/tcp open  pmcdproxy
+44323/tcp open  pmwebapi
+
