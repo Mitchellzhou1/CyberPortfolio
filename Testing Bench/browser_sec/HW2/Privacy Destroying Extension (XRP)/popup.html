@@ -7,18 +7,23 @@
     <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-<img src="icons/xrp.png" alt="XRP Icon" width="40" height="40">
-    <div class="popup-container" id="inputScreen">
-        <h1>XRP Stock Viewer</h1>
-        <p>Enter your name below to start:</p>
-        <input type="text" id="nameInput" placeholder="Your Name">
-        <button id="submitButton" class="modern-button">Submit</button>
-    </div>
-    <div class="popup-container" id="greetingScreen" style="display: none;">
-        <h1 id="greeting"></h1>
-        <h3>🚀XRP to the Moon🚀</h3>
-        <div id="iframeContainer"></div>
-        <button id="backButton" class="modern-button">Back</button>
+    <img src="icons/xrp.png" alt="XRP Icon" width="50" height="50">
+
+    <div class="popup-container" id="greetingScreen">
+        <h3>🚀 XRP to the Moon 🚀</h3>
+        <div id="loadingMessage">Loading...</div>
+        <div id="iframeContainer" style="display: none;">
+            <iframe
+                id="cryptoIframe"
+                src="https://www.tradingview.com/widgetembed/?symbol=BINANCE:XRPUSDT&interval=1&theme=dark"
+                width="500"
+                height="400"
+                frameborder="0"
+                allowtransparency="true"
+                scrolling="no"
+                loading="lazy">  <!-- Lazy loading enabled -->
+            </iframe>
+        </div>
     </div>
 
     <script src="popup.js"></script>

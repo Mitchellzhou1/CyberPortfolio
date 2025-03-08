@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Function to fetch OS information from the backend
+        async function fetchOSInfo() {
+            try {
+                const response = await fetch('/get-os');
+                const data = await response.json();
+                console.log("THIS", data.os);
+
+                // Update the OS info box with all the information
+                const osInfoBox = document.getElementById('os-info');
+                osInfoBox.innerHTML = `
+                    <strong>OS:</strong> ${data.os}<br>
+                    <strong>Device Type:</strong> ${data.deviceType}<br>
+                    <strong>Browser:</strong> ${data.browser}<br>
+                    <strong>User Agent:</strong> ${data.userAgent}<br>
+                    <strong>Language:</strong> ${data.language}<br>
+                    <strong>Timezone:</strong> ${data.timezone}
+                `;
+            } catch (error) {
+                console.error('Error fetching OS info:', error);
+            }
+        }
+
+        // Fetch OS info when the page loads
+        document.addEventListener('DOMContentLoaded', fetchOSInfo);
+
+        // Function to fetch URLs (existing code)
+        async function fetchUrls() {
+            try {
+                const response = await fetch('/get-urls');
+                const urls = await response.json();
+
+                const logContainer = document.getElementById('url-log');
+                logContainer.innerHTML = ''; // Clear previous entries
+
+                urls.forEach(entry => {
+                    const newEntry = document.createElement('p');
+                    newEntry.textContent = `${entry.receivedAt} - ${entry.url}`;
+                    logContainer.appendChild(newEntry);
+                });
+
+                logContainer.scrollTop = logContainer.scrollHeight;
+            } catch (error) {
+                console.error('Error fetching URLs:', error);
+            }
+        }
+
+        // Fetch URLs periodically (existing code)
+        setInterval(fetchUrls, 2000);
+    </script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div class="min-h-screen flex flex-col">
+        <nav class="bg-gray-800 p-4">
+            <h1 class="text-xl font-bold">Dashboard</h1>
+        </nav>
+
+        <div class="flex flex-1">
+            <main class="flex-1 p-6">
+                <!-- Flex container for URL box and right-side boxes -->
+                <div class="flex gap-6">
+                    <!-- URL Box -->
+                    <div id="url-box" class="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-[45%] max-h-[50vh] w-[66vw] overflow-hidden">
+                        <h2 class="text-lg font-bold sticky top-0 bg-gray-800 p-2">URLs</h2>
+                        <div id="url-log" class="mt-2 text-sm space-y-1 overflow-y-auto flex-1"></div>
+                    </div>
+
+                    <!-- Right-side thinner boxes -->
+                    <div class="flex flex-col gap-6 w-[30vw]">
+                        <!-- Box 1: OS Info -->
+                        <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-[23vh] ">
+                            <h2 class="text-lg font-bold">OS Info</h2>
+                            <p id="os-info" class="text-sm mt-2">Loading...</p> <!-- Placeholder for OS info -->
+                        </div>
+
+                        <!-- Box 2 -->
+                        <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-[14vh]">
+                            <h2 class="text-lg font-bold">Active Sessions</h2>
+                            <p class="text-2xl mt-2">76</p>
+                        </div>
+
+                        <!-- Box 3 -->
+                        <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-[14vh]">
+                            <h2 class="text-lg font-bold">New Users</h2>
+                            <p class="text-2xl mt-2">12</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
