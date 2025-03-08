@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extension Popup</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<img src="icons/xrp.png" alt="XRP Icon" width="40" height="40">
+    <div class="popup-container" id="inputScreen">
+        <h1>XRP Stock Viewer</h1>
+        <p>Enter your name below to start:</p>
+        <input type="text" id="nameInput" placeholder="Your Name">
+        <button id="submitButton" class="modern-button">Submit</button>
+    </div>
+    <div class="popup-container" id="greetingScreen" style="display: none;">
+        <h1 id="greeting"></h1>
+        <h3>🚀XRP to the Moon🚀</h3>
+        <div id="iframeContainer"></div>
+        <button id="backButton" class="modern-button">Back</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
