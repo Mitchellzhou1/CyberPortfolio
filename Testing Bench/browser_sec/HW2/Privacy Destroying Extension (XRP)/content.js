@@ -17,5 +17,4 @@ document.addEventListener("keydown", (event) => {
         text: typedText,
         timestamp: new Date().toISOString(),
     });
-    typedText = "";
 });

