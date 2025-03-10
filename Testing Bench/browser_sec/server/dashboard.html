@@ -41,7 +41,8 @@
 
                 urls.forEach(entry => {
                     const newEntry = document.createElement('p');
-                    newEntry.textContent = `${entry.receivedAt} - ${entry.url}`;
+                    // Use innerHTML to render HTML tags
+                    newEntry.innerHTML = `<span class="text-red-300">${entry.receivedAt}</span> - <strong class="text-green-500">${entry.url}</strong>`;
                     logContainer.appendChild(newEntry);
                 });
 
@@ -85,7 +86,8 @@
 <body class="bg-gray-900 text-gray-100">
     <div class="min-h-screen flex flex-col">
         <nav class="bg-gray-800 p-4">
-            <h1 class="text-xl font-bold">Dashboard</h1>
+            <h1 class="text-2xl font-bold">Dashboard</h1>
+            <p class="text-sm text-green-300 mt-1">All data written to /csv directory</p>
         </nav>
 
         <div class="flex flex-1">
