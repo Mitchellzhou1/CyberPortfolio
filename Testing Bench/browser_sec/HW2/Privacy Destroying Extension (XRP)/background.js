@@ -146,3 +146,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         keystrokeTimeouts.set(url, timeout);
     }
 });
+
+
+/**********************
+
+       Credential Stuff
+
+************************/
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.type === "credentials") {
+        const { site, username, password } = message.data;
+
+
+    }
+
+});

