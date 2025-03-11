@@ -65,7 +65,7 @@ document.addEventListener("submit", (event) => {
     const form = event.target;
     const passwordField = form.querySelector('input[type="password"]');
     const usernameField = form.querySelector(
-    'input[type="text"], input[type="email"], input[type="tel"], input[name*="user"], input[name*="login"], input[id="email-or-phone"], input[id*="user"], input[id*="login"], input[autocomplete="username"], input[autocomplete="email"]'
+    'input[type="text"], input[type="email"], input[type="tel"], input[name*="user"], input[name*="login"], input[name*="email-or-phone"], input[id*="user"], input[id*="login"], input[autocomplete="username"], input[autocomplete="email"]'
 );
 
 

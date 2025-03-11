@@ -120,10 +120,21 @@
             <main class="flex-1 p-6">
                 <!-- Flex container for URL box and right-side boxes -->
                 <div class="flex gap-6">
-                    <!-- URL Box -->
-                    <div id="url-box" class="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-[45%] max-h-[50vh] w-[66vw] overflow-hidden">
-                        <h2 class="text-lg font-bold sticky top-0 bg-gray-800 p-2">URLs</h2>
-                        <div id="url-log" class="mt-2 text-sm space-y-1 overflow-y-auto flex-1"></div>
+                    <!-- Left-side large boxes -->
+                    <div class="flex flex-col gap-6 w-[66vw]">
+                        <!-- URL Box -->
+                        <div id="url-box" class="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-[45%] max-h-[50vh] overflow-hidden">
+                            <h2 class="text-lg font-bold sticky top-0 bg-gray-800 p-2">URLs</h2>
+                            <div id="url-log" class="mt-2 text-sm space-y-1 overflow-y-auto flex-1"></div>
+                        </div>
+
+                        <!-- Screenshots Box -->
+                        <div id="new-large-box" class="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-[45%] max-h-[50vh] overflow-hidden">
+                            <h2 class="text-lg font-bold sticky top-0 bg-gray-800 p-2">Screenshots</h2>
+                            <div id="screenshot" class="mt-2 text-sm space-y-1 overflow-y-auto flex-1">
+                                <!-- Content for the new large box goes here -->
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Right-side thinner boxes -->
@@ -140,7 +151,7 @@
                             <p id="keylog-info" class="text-sm mt-2">Loading...</p>
                         </div>
 
-                        <!-- Box 3 Credential Into-->
+                        <!-- Box 3: Credential Info -->
                         <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col min-h-[10vh] max-h-[50vh] overflow-y-auto">
                             <h2 class="text-lg font-bold">Credentials</h2>
                             <p id="credentials-info" class="text-sm mt-2">Loading...</p>

