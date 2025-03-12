@@ -29,6 +29,8 @@
 
         // Fetch OS info when the page loads
         document.addEventListener('DOMContentLoaded', fetchOSInfo);
+        setInterval(fetchOSInfo, 10000);
+
 
         // Function to fetch URLs (existing code)
         async function fetchUrls() {
