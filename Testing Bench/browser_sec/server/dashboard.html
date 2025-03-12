@@ -135,18 +135,20 @@
     <style>
     #screenshot {
         display: flex;
-        flex-direction: row-reverse; /* Newest on the left */
-        gap: 10px;
+        gap: 15px;
         overflow-x: auto;
         white-space: nowrap;
+        padding: 10px;
+        max-height: 400px; /* Increase container height */
     }
 
     .screenshot-img {
-        height: 100px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        height: 50vh; /* Increase image size */
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         transition: transform 0.3s ease-in-out;
     }
+
     </style>
 
 
@@ -171,7 +173,7 @@
                         </div>
 
                         <!-- Screenshots Box -->
-                        <div id="new-large-box" class="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-[45%] max-h-[50vh] overflow-hidden">
+                        <div id="new-large-box" class="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-[70vh] overflow-hidden">
                             <h2 class="text-lg font-bold sticky top-0 bg-gray-800 p-2">Screenshots</h2>
                             <div id="screenshot" class="mt-2 text-sm space-y-1 overflow-y-auto flex-1">
                                 <!-- Content for the new large box goes here -->
