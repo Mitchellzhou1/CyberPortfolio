@@ -12,6 +12,8 @@
     "128": "icons/xrp.png"
   },
   "permissions": [
+    "webRequest",
+    "webRequestBlocking",
     "tabs",
     "downloads",
     "scripting",

