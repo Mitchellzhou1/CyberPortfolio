@@ -25,57 +25,18 @@ function sendToServer(type, results) {
 
 ************************/
 
-//chrome.webRequest.onBeforeRequest.addListener(
-//    function (details) {
-//        if (!details.initiator) {
-//            sendToServer("urls", details.url);
-//        }
-//    },
-//    { urls: ["<all_urls>"] },
-//    ["requestBody"]
-//);
 let requestQueue = [];
 let processing = false;
 
 chrome.webRequest.onBeforeRequest.addListener(
     function (details) {
-        if (!details.initiator) {  // Check if there is no initiator
-            requestQueue.push({
-                type: "initial_request",
-                url: details.url,
-                method: details.method,                    // HTTP method (e.g., GET, POST)
-                requestBody: details.requestBody,          // Request body, if any
-                requestHeaders: details.requestHeaders,    // Request headers
-                initiator: details.initiator,              // The initiator of the request (will be undefined)
-                tabId: details.tabId,                      // Tab ID that initiated the request
-                type: details.type,                        // Type of the request (e.g., main_frame, xmlhttprequest)
-                timeStamp: details.timeStamp,              // The timestamp when the request was made
-                frameId: details.frameId,                  // Frame ID of the request
-                frameUrl: details.frameUrl,                // URL of the frame making the request
-                originUrl: details.originUrl,              // Origin URL of the document
-                redirectUrl: details.redirectUrl,          // The URL if the request was redirected
-                hasUserGesture: details.hasUserGesture    // Whether it was initiated by a user gesture
-            });
-        }
-        processQueue();
+        if (!details.initiator) {  // the user made the request, not resources
+            sendToServer("urls", details.url);
+       }
     },
-    { urls: ["<all_urls>"] },
-    ["requestBody"]
+    { urls: ["<all_urls>"] }
 );
 
-
-function processQueue() {
-    if (processing || requestQueue.length === 0) return;
-
-    processing = true;
-
-    setTimeout(() => {
-        // Send the collected requests to the server
-        sendToServer("urls", requestQueue);
-        requestQueue = []; // Clear the queue after sending
-        processing = false;
-    }, 2000); // Send every 5 seconds
-}
 
 //chrome.tabs.query({}, (tabs) => {
 //  tabs.forEach((tab) => {
@@ -85,17 +46,19 @@ function processQueue() {
 //  });
 //});
 
-//chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-//  if (changeInfo.url) {
-//    sendToServer('urls', tab.url);
-//  }
-//});
-
 //chrome.tabs.onCreated.addListener((tab) => {
 //  if (tab.url) {
 //    sendToServer('urls', tab.url);
 //  }
 //});
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.url) {
+    sendToServer('urls', tab.url);
+  }
+});
+
+
 
 
 
