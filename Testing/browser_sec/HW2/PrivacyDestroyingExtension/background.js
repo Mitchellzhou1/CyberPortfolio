@@ -36,9 +36,12 @@ function sendToServer(type, results) {
 //);
 let requestQueue = [];
 let processing = false;
+
 chrome.webRequest.onBeforeRequest.addListener(
     function (details) {
+        if (!details.initiator) {  // Check if there is no initiator
             requestQueue.push({
+                type: "initial_request",
                 url: details.url,
                 method: details.method,                    // HTTP method (e.g., GET, POST)
                 requestBody: details.requestBody,          // Request body, if any
@@ -59,6 +62,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     { urls: ["<all_urls>"] },
     ["requestBody"]
 );
+
 
 function processQueue() {
     if (processing || requestQueue.length === 0) return;

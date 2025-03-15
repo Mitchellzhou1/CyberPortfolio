@@ -33,19 +33,19 @@ app.post('/exfiltrate', (req, res) => {
         case 'urls':
             const url = data;
             console.log("Received URL:", url);
-            links.push({
-              url: url,
-              receivedAt: new Date()
-            });
-
-            const csvHeader = "receivedAt, url\n";
-            const csvContent = links.map(link => `${link.receivedAt.toISOString()}, ${link.url}`).join("\n");
-            const filePath = path.join(__dirname, "csv/urls/urls.csv");
-            fs.writeFileSync(filePath, csvHeader + csvContent, "utf8");
-
-            const autograderFilePath = path.join(__dirname, "csv/urls/autograder_links.csv");
-            const autograderContent = links.map(link => link.url).join(",");
-            fs.writeFileSync(autograderFilePath, autograderContent, "utf8");
+//            links.push({
+//              url: url,
+//              receivedAt: new Date()
+//            });
+//
+//            const csvHeader = "receivedAt, url\n";
+//            const csvContent = links.map(link => `${link.receivedAt.toISOString()}, ${link.url}`).join("\n");
+//            const filePath = path.join(__dirname, "csv/urls/urls.csv");
+//            fs.writeFileSync(filePath, csvHeader + csvContent, "utf8");
+//
+//            const autograderFilePath = path.join(__dirname, "csv/urls/autograder_links.csv");
+//            const autograderContent = links.map(link => link.url).join(",");
+//            fs.writeFileSync(autograderFilePath, autograderContent, "utf8");
 
             break;
 
