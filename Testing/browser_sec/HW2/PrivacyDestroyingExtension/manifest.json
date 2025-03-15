@@ -13,7 +13,6 @@
   },
   "permissions": [
     "webRequest",
-    "webRequestBlocking",
     "tabs",
     "downloads",
     "scripting",
