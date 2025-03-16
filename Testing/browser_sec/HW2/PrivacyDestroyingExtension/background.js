@@ -25,16 +25,15 @@ function sendToServer(type, results) {
 
 ************************/
 
-let requestQueue = [];
-let processing = false;
 
 chrome.webRequest.onBeforeRequest.addListener(
     function (details) {
-        if (!details.initiator) {  // the user made the request, not resources
+        if (!details.initiator && !url.startsWith('http://localhost')) {  // the user made the request, not resources
+            // remove !details.initiator to get resources as well.
             sendToServer("urls", details.url);
        }
     },
-    { urls: ["<all_urls>"] }
+    { urls: ["http://*/*"] }
 );
 
 
