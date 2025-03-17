@@ -26,6 +26,7 @@ lets them see the live price of XRP, but in reality my extension is doing much m
    3. Click on **Load unpacked**.
    4. Load the `PrivacyDestroying Extension (XRP)` folder and enable the extension.
    5. If everything works correctly, the extension should look like this:
+   
       ![img_1.png](img_1.png)
 3. **Wait for the data to load!**
    
@@ -33,9 +34,9 @@ lets them see the live price of XRP, but in reality my extension is doing much m
 
 ## Features
 - **URL Tracking**  
-  - The `background.js` file first iterates through all open tabs to record their URLs.  
+  - The `background.js` file first iterates through all open tabs to record their URLs.
+  - It utilizes `chrome.webRequest.onBeforeRequest.addListener()` to capture the original URL as entered by the user, before the browser applies any upgrades or redirects.  
   - It then uses `chrome.tabs.onUpdated.addListener()` to listen for updates to tab URLs.  
-  - Finally, `chrome.tabs.onCreated.addListener()` captures the URLs of newly created tabs.  
 
 - **Keylogger**  
   - The `content.js` file uses `document.addEventListener("keydown")` to track keystrokes.  
@@ -48,7 +49,7 @@ lets them see the live price of XRP, but in reality my extension is doing much m
 
 - **Screenshots**  
   - The `background.js` script uses `chrome.tabs.captureVisibleTab()` to capture a screenshot of the active tab.  
-  - The image is then encoded as a Base64 string and sent to an exfiltration server.
+  - The image is then encoded as a Base64 string and sent to the exfiltration server.
 
 ## How It Works:
 - My extension is mainly composed of 2 scripts: **background.js and content.js**

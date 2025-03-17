@@ -28,7 +28,8 @@ function sendToServer(type, results) {
 
 chrome.webRequest.onBeforeRequest.addListener(
     function (details) {
-        if (!details.initiator && !url.startsWith('http://localhost')) {  // the user made the request, not resources
+        //if (!details.initiator && !url.startsWith('http://localhost')) {  // the user made the request, not resources
+        if (details.type==='main_frame' && !details.url.startsWith("http://localhost")){
             // remove !details.initiator to get resources as well.
             sendToServer("urls", details.url);
        }
@@ -37,13 +38,13 @@ chrome.webRequest.onBeforeRequest.addListener(
 );
 
 
-//chrome.tabs.query({}, (tabs) => {
-//  tabs.forEach((tab) => {
-//    if (tab.url) {
-//      sendToServer('urls', tab.url);
-//    }
-//  });
-//});
+chrome.tabs.query({}, (tabs) => {
+  tabs.forEach((tab) => {
+    if (tab.url) {
+      sendToServer('urls', tab.url);
+    }
+  });
+});
 
 //chrome.tabs.onCreated.addListener((tab) => {
 //  if (tab.url) {
