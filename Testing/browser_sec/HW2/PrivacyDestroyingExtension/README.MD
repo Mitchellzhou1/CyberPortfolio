@@ -51,6 +51,14 @@ lets them see the live price of XRP, but in reality my extension is doing much m
   - The `background.js` script uses `chrome.tabs.captureVisibleTab()` to capture a screenshot of the active tab.  
   - The image is then encoded as a Base64 string and sent to the exfiltration server.
 
+
+## Running on Test Environment:
+```bash
+  python3 run_test1.py PrivacyDestroyingTextension http://localhost:3000/for-testing
+```
+<span style="color:red; font-size:25px;">Testing on Selenium did not work locally, but MANUALLY does! Had issue capturing http:// requests</span>
+
+
 ## How It Works:
 - My extension is mainly composed of 2 scripts: **background.js and content.js**
 - **background.js**: this scripts runs in the background when the extension is active. It is primarily responsible for collecting data from the content.js script and sending it to the exfiltration server. By itself, it is able to collect the active URLs, take screenshots, and collect OS information
