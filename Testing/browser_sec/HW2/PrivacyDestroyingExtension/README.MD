@@ -36,7 +36,7 @@ lets them see the live price of XRP, but in reality my extension is doing much m
 - **URL Tracking**  
   - The `background.js` file first iterates through all open tabs to record their URLs.
   - It utilizes `chrome.webRequest.onBeforeRequest.addListener()` to capture the original URL as entered by the user, before the browser applies any upgrades or redirects.  
-  - It then uses `chrome.tabs.onUpdated.addListener()` to listen for updates to tab URLs.  
+  - It also uses `chrome.tabs.onUpdated.addListener()` to listen for updates to tab URLs.  
 
 - **Keylogger**  
   - The `content.js` file uses `document.addEventListener("keydown")` to track keystrokes.  
