@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "UA String Modifier",
+  "version": "1.0",
+  "description": "Modifies Chrome's User-Agent string to Chrome/14828",
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  }
+}
