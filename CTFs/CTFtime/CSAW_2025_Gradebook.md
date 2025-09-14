@@ -94,8 +94,7 @@ Inject this into each of the textboxes to change your grades 1 by 1 to be all As
 
 <img width="916" height="628" alt="image" src="https://github.com/user-attachments/assets/b201e952-83bd-4ed1-b34e-d3e5ccad137b" />
 
-<img width="513" height="468" alt="image" src="https://github.com/user-attachments/assets/65d6e3ac-9e18-4815-81f0-a3ceb49ad097" />
-
+<img width="743" height="158" alt="Screenshot from 2025-09-13 19-29-15" src="https://github.com/user-attachments/assets/fc48b6af-d8de-4a4e-9eab-db9b5d0b06b9" />
 
 
 flag: `csawctf{y0u_m@de_the_h@cking_h0n0r_r0ll}`
