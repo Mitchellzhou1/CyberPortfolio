@@ -3,6 +3,7 @@
 ### CTF Name: Intergalactic Webhook Service
 **CTF Weight:** 417 points
 
+file:///home/character/Pictures/Screenshots/Screenshot%20from%202025-09-27%2017-54-03.png
 
 Let's look at the source code for this fun little webhook service:
 
