@@ -1,34 +1,65 @@
-import datetime
-import random
-import requests
-import pyotp
+#!/usr/bin/env python3
+import sys
+import time
+from binascii import hexlify
+from Crypto.Cipher import AES
+from Crypto.Util import Counter
+from Crypto.Random import get_random_bytes
 
-URL = "http://challs.bcactf.com:31772/"
-SECRET_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
+# KEY = get_random_bytes(16)
+# NONCE = get_random_bytes(8)
 
-start_date = datetime.datetime.today() - datetime.timedelta(days=30)
+KEY = b'\xa7\x8aC\xdc\x0e?g\x12\xb5zj\xb3\xab>\t\x1e'
+NONCE = b'\xe3\xa2/\x7f\xe43@\xfb'
+MESSAGE = b"Greetings, Earthlings.1234567890123456789012345678901234567890123456789012345678901234000"
 
-for day_offset in range(31):
-    current_date = start_date + datetime.timedelta(days=day_offset)
-    current_date_str = current_date.strftime('%Y-%m-%d')
+WELCOME = '''
+     ,-.
+    /   \\ 
+   :     \\      ....*
+   | . .- \\-----00''
+   : . ..' \\''//
+    \\ .  .  \\/
+     \\ . ' . NASA Deep Space Listening Posts
+  , . \\       \\     ~ Est. 1969 ~
+,|,. -.\\       \\
+    '.|| `-...__..-
+      | | "We're always listening to you!"
+     |__|
+    /||\\\\
+    //||\\\\
+   // || \\\\
+__//__||__\\\\__
+'--------------'
+'''
 
-    random.seed(current_date_str)
-    totp_secret = ''.join([random.choice(SECRET_ALPHABET) for _ in range(20)])
 
-    totp = pyotp.TOTP(totp_secret)
+def main():
+    # Print ASCII art and intro
+    # sys.stdout.write(WELCOME)
+    # sys.stdout.flush()
+    # time.sleep(0.5)
 
-    totp_code = totp.now()
+    sys.stdout.write("\nConnecting to remote station")
+    sys.stdout.flush()
 
-    print(f"Date: {current_date_str}, TOTP Secret: {totp_secret}, Code: {totp_code}")
+    for i in range(5):
+        sys.stdout.write(".")
+        sys.stdout.flush()
+        # time.sleep(0.5)
 
-    # Send the POST request with the TOTP code
-    payload = {
-        'username': 'admin',
-        'password': 'admin',
-        'totp': totp_code
-    }
+    sys.stdout.write("\n\n== BEGINNING TRANSMISSION ==\n\n")
+    sys.stdout.flush()
 
-    response = requests.post(URL, data=payload)
-    if "ctf" in response.text:
-        print(response.text)
-        break
+    C = 0
+    while True:
+        ctr = Counter.new(64, prefix=NONCE, initial_value=C, little_endian=False)
+        cipher = AES.new(KEY, AES.MODE_CTR, counter=ctr)
+        ct = cipher.encrypt(MESSAGE)
+        sys.stdout.write("%s\n" % hexlify(ct).decode())
+        sys.stdout.flush()
+        C += 1
+
+
+if __name__ == "__main__":
+    main()
