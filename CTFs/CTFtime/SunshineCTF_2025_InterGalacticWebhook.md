@@ -3,7 +3,7 @@
 ### CTF Name: Intergalactic Webhook Service
 **CTF Weight:** 417 points
 
-file:///home/character/Pictures/Screenshots/Screenshot%20from%202025-09-27%2017-54-03.png
+<img width="232" height="145" alt="Screenshot from 2025-09-27 17-54-03" src="https://github.com/user-attachments/assets/9b3f5c96-7b2e-4b7c-b5c0-a747b7583270" />
 
 Let's look at the source code for this fun little webhook service:
 
@@ -110,10 +110,13 @@ So the attack flow is as follows:
 
 2) register this domain with the webhook service and retrieve the token
 
-4) change the domain to resolve to 127.0.0.1
+3) change the domain to resolve to 127.0.0.1
 
-3) submit the token to /trigger
+4) submit the token to /trigger
 ```
+
+<img width="959" height="579" alt="Screenshot from 2025-09-27 17-43-17" src="https://github.com/user-attachments/assets/b73a0411-81de-43e4-b3d6-9ed995c93c5f" />
+
 
 Now there is another `is_ip_allowed(url)` check in the trigger function which is very annoying and once again prevents us 
 from going to the flag endpoint.
@@ -179,3 +182,4 @@ def attack():
 
 attack()
 ```
+<img width="774" height="108" alt="Screenshot from 2025-09-27 17-53-26" src="https://github.com/user-attachments/assets/95955c81-d26e-445c-a262-54a2fc4a14e8" />
