@@ -6,7 +6,8 @@
 <img width="470" height="518" alt="Screenshot from 2025-09-29 17-53-02" src="https://github.com/user-attachments/assets/78975213-86be-41f4-a4a3-261d43d3b80d" />
 
 
-Worked on it with my mate:
+Worked on it with my teammate: Max Yin
+
 Full writeup: `https://blog.bbtc33.com/sunshine-ctf-writeup-plutonian-cipher/`
 
 
