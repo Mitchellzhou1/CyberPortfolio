@@ -8,7 +8,7 @@
 
 Worked on it with my teammate: Max Yin
 
-Full writeup: `https://blog.bbtc33.com/sunshine-ctf-writeup-plutonian-cipher/`
+Full writeup: <https://blog.bbtc33.com/sunshine-ctf-writeup-plutonian-cipher/>
 
 
 solution script:
