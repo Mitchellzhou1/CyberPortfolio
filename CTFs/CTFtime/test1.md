@@ -82,3 +82,16 @@ did as the chal descriptopn asked: SQLI + template injection
 
 
 flag: `PCTF{SQL1_C4n_b3_U53D_3Ff1C13N7lY}`
+
+---
+
+
+
+## Trust Fall
+<img width="502" height="448" alt="image" src="https://github.com/user-attachments/assets/b4176bc7-0c76-402a-9599-74e89f016af7" />
+
+There is hidden `/api/users` endpoint which allows you to get info on the user
+
+<img width="704" height="274" alt="image" src="https://github.com/user-attachments/assets/7e969e13-d3d3-4901-8af9-50e7ce92cd02" />
+
+flag: `PCTF{authz_misconfig_owns_u}`
