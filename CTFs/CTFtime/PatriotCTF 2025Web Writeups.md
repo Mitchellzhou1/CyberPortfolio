@@ -1,4 +1,4 @@
-# Patriot CTF Web Writeups
+# PatriotCTF 2025 Web Writeups
 ### Most of these chals were very easy so I won't spend too much time in the writeup explaining it as it is very self-explanatory.
 
 
