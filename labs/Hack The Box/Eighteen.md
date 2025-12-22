@@ -46,6 +46,7 @@ These credentials only worked on the web app, I was not able to use `admin:ilove
 
 with this infomration I build a `user.txt` and tested if the `iloveyou1` password was reused... and it was by `adam.scott`
 
+`evil-winrm -i 10.10.11.95 -u adam.scott -p 'iloveyou1'`
 <img width="952" height="570" alt="image" src="https://github.com/user-attachments/assets/ddfac9c3-ea88-462d-8543-05aa8cb580ec" />
 
 
