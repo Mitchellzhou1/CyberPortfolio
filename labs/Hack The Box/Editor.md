@@ -1,4 +1,13 @@
+# Hack The Box: Editor
+
+### Challenge Name: Editor
+**Difficulty:** Easy
 <img width="892" height="239" alt="image" src="https://github.com/user-attachments/assets/0b89c17e-2867-4f72-9cdb-9f890c581009" />
+
+
+## Writeup:
+
+start with nmap scan
 
 ```                                                                                                               
 ┌──(hacking)─(character㉿vbox)-[/tmp/CVE-2021-23017-PoC]
