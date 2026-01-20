@@ -46,7 +46,43 @@ These credentials only worked on the web app, I was not able to use `admin:ilove
 
 with this infomration I build a `user.txt` and tested if the `iloveyou1` password was reused... and it was by `adam.scott`
 
+`evil-winrm -i 10.10.11.95 -u adam.scott -p 'iloveyou1'`
 <img width="952" height="570" alt="image" src="https://github.com/user-attachments/assets/ddfac9c3-ea88-462d-8543-05aa8cb580ec" />
 
-After logging in they give you the exploit to privilege escalate.
+
+### Escalation to root
+couldn't excalate unfortunatley :(
+
+I did some research into Windows Server 2025 Build 26100 and found this article `https://www.covertswarm.com/post/bad-successor-technical-deep-dive` on using badsuccessor to privilege escalate.
+
+The article states that in order to preform this, I need **one** of the following three permisions to execute this attack:
+
+- `Access to an existing dMSA account`
+- `Appropriate privileges such as CreateChild, GenericAll, WriteDACL, or WriteOwner on an Organizational Unit (OU) in the domain`
+- `Write permissions on existing dMSA objects`
+
+After checking my permissions, 
+
+`whoami /all`
+<img width="960" height="852" alt="image" src="https://github.com/user-attachments/assets/0632932b-6dd9-43d0-a11d-cfcd5e4432bd" />
+
+
+`Get-DomainObjectAcl "OU=Staff,DC=eighteen,DC=htb" -ResolveGUIDs | Where-Object {$_.SecurityIdentifier -eq "S-1-5-21-1152179935-589108180-1989892463-1604"}`
+<img width="948" height="320" alt="image" src="https://github.com/user-attachments/assets/42bd7e41-1ef4-4c9d-ad61-27f2859d03b2" />
+
+
+Sp, the `EIGHTEEN\IT` group has CreateChild rights on OU=Staff
+
+Since adam scott is a member of EIGHTEEN\IT.
+
+That means I can create objects in OU=Staff which is exactly the prerequisite the article requires.
+
+But no matter that I tried, I kept getting hit with missing permissions. : (
+
+
+<img width="952" height="762" alt="image" src="https://github.com/user-attachments/assets/06a7cb40-9a61-4b45-9088-eea26ef9a291" />
+
+
+
+
 
