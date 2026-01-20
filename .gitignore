@@ -1,0 +1,5 @@
+# Ignore entire Testing folder
+Testing/
+
+# Ignore CTF testing bench
+CTFs/Testing Bench/
