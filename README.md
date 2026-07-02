@@ -12,7 +12,7 @@ I love exploring how complex software and infrastructure can be broken, fixed, a
 My learning revolves around **CTFs**, **CVE research**, **labs**, and **hands-on security projects** that bridge theory with real-world impact.  
 Whether it’s reverse engineering a binary, analyzing a vulnerability, or simulating attacks in a lab, I’m driven by curiosity and a desire to make technology more secure.
 
-<img width="350" height="301" alt="image" src="https://github.com/user-attachments/assets/e18bbbd8-ab49-4452-be6b-952cccafe9d1" />
+<img width="1200" height="627" alt="image" src="https://github.com/user-attachments/assets/ae712d98-0a5b-4d98-b3f4-40c03a56fb2d" />
 
 
 ## 📂 Contents
